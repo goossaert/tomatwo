@@ -1,0 +1,71 @@
+Tomatwo - The Mean Twitting Machine
+(c) 2011 - Emmanuel Goossaert 
+Under BSD License
+
+
+1 - Install feedparser (RSS API)
+http://feedparser.org/
+
+
+2 - Install bit.ly API
+http://code.google.com/p/python-bitly/
+$ sudo apt-get install python-simplejson
+
+
+3 - Install tweepy (Twitter API)
+http://joshthecoder.github.com/tweepy/
+
+
+4 - Download the Tomatwo source code
+http://github.com/goossaert/tomatwo/
+
+The settings.conf is where you put your Twitter/Bit.ly keys
+
+
+5 - Setup Twitter to allow Tomatwo to tweet:
+
+    A)  Open a Twitter account if you don't have one: http://twitter.com
+
+    B)  Register an application on Twitter: http://twitter.com/apps
+        When registering, choose "Client" as Application Type and
+        "Read & Write" as Default Access Type.
+
+    C)  Change the CONSUMER_KEY and CONSUMER_SECRET values in 'settings.conf'
+        to match the ones available in your application settings on Twitter,
+        through the url: http://dev.twitter.com/apps
+
+    D)  Change the ACCESS_TOKEN and ACCESS_TOKEN_SECRET values in 
+        'settings.conf' to match the ones available in your application
+        settings on Twitter, through the url: http://dev.twitter.com/apps
+        and then choosing "My Token Access". This also defines from which
+        Twitter account the tweet will be posted.
+
+
+6 - Set up bit.ly
+
+Create a bit.ly account on http://bit.ly/, and add your API key
+in the settings.conf file.
+
+
+7 - Add cron jobs
+
+Add these lines to your '/etc/crontab' file, and change 'user' to match your
+user account, and '/home/user/tomatwo' to match the path where the Tomatwo
+files are on your machine.
+
+1 0     * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py parse ); date > /home/user/tomatwo/last_parse
+15 0    * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py plan );  date > /home/user/tomatwo/last_plan
+* *     * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py check ); date > /home/user/tomatwo/last_check
+
+
+8 - Create the list of RSS feeds to crawl
+
+Put the RSS feed URLs that you want Tomatwo to crawl in the 'rss.txt' file.
+Each line should contain only one feed, and empty lines or lines starting
+with the '#' characters are skipped.
+
+
+9 - You are all set! Enjoy now :)
+
+If you have questions/feedback, just email me!
+
