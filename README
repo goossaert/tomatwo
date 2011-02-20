@@ -53,7 +53,7 @@ Add these lines to your '/etc/crontab' file, and change 'user' to match your
 user account, and '/home/user/tomatwo' to match the path where the Tomatwo
 files are on your machine.
 
-1 0     * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py parse ); date > /home/user/tomatwo/last_parse
+1 0     * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py crawl ); date > /home/user/tomatwo/last_parse
 15 0    * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py plan );  date > /home/user/tomatwo/last_plan
 * *     * * *   user    ( cd /home/user/tomatwo/ && python tomatwo.py check ); date > /home/user/tomatwo/last_check
 
